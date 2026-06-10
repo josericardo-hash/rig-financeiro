@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+node_modules/
+dist/
+.vite/
+.env
+.env.*
+!.env.example
+*.png
+*.log
