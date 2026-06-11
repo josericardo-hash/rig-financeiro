@@ -154,6 +154,24 @@ export const mockClientesPorCidade: Record<string, Array<{ cliente_nome: string;
   ],
 };
 
+export const mockClientesCRM = Object.entries(mockClientesPorCidade).flatMap(([cidade, clientes], cidadeIndex) => {
+  const estado = Object.entries(mockCidadesPorEstado).find(([, cidades]) => cidades.some((item) => item.cidade === cidade))?.[0] || 'SP';
+
+  return clientes.map((cliente, clienteIndex) => ({
+    id: `${estado}-${cidadeIndex}-${clienteIndex}`,
+    cliente_nome: cliente.cliente_nome,
+    perfil: cliente.perfil,
+    cidade,
+    estado,
+    valor: cliente.receita,
+    curva: cliente.receita >= 100000 ? 'A' : cliente.receita >= 50000 ? 'B' : 'C',
+    email: cliente.email,
+    whatsapp: cliente.whatsapp,
+    telefone: `+${cliente.whatsapp}`,
+    produto_top: cliente.top_produto,
+  }));
+});
+
 export const pedidos = [
   { id: 'venda-001', numero: '001248', data: '2026-06-04', cliente: 'Policia Civil SP', empresa: 'Performa', valor: 40000, margem: 21.3, status: 'Faturado' },
   { id: 'venda-002', numero: '001249', data: '2026-06-06', cliente: 'Clube Tatico RJ', empresa: 'SIG', valor: 18500, margem: 18.8, status: 'Pago' },
