@@ -45,11 +45,11 @@ export default function Vendas() {
       <div className="metrics four">
         <MetricCard title="Receita Total" value={formatCurrency(totalReceita)} />
         <MetricCard title="Qtde Pedidos" value={String(mockVendasRecentes.length)} />
-        <MetricCard title="Ticket Medio" value={formatCurrency(ticketMedio)} />
+        <MetricCard title="Ticket Médio" value={formatCurrency(ticketMedio)} />
         <MetricCard title="Margem" value={`${margemMedia.toFixed(1)}%`} tone="green" />
       </div>
 
-      <ChartCard title="Evolucao por Empresa">
+      <ChartCard title="Evolução por Empresa">
         <ResponsiveContainer height={300}>
           <BarChart data={b2bB2cMensal}>
             <CartesianGrid strokeDasharray="3 3" />

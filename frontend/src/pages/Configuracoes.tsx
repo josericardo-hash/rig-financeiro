@@ -15,7 +15,7 @@ export default function Configuracoes() {
   useEffect(() => { apiGet<Status[]>('/api/v1/auth/status', fallback).then(setStatus); }, []);
   return (
     <div className="page">
-      <header><h1>Configuracoes</h1><p>Status da integracao Conta Azul e disponibilidade de dados reais.</p></header>
+      <header><h1>Configurações</h1><p>Status da integração Conta Azul e disponibilidade de dados reais.</p></header>
       <section className="grid three">{status.map((s) => <article className="panel" key={s.empresa_id}><h2>{s.empresa_nome}</h2><MetricCard title="OAuth" value={s.oauth_configurado ? 'Configurado' : 'Nao configurado'} tone={s.oauth_configurado ? 'green' : 'red'} /><MetricCard title="Token" value={s.token_valido ? 'Valido' : 'Expirado'} tone={s.token_valido ? 'green' : 'amber'} /><p>Ultimo sync: {s.ultimo_sync ?? '-'}</p><p>Vendas {s.registros_no_banco.vendas} | Clientes {s.registros_no_banco.clientes} | CAR {s.registros_no_banco.car} | CAP {s.registros_no_banco.cap}</p><button disabled={!s.oauth_configurado || !s.token_valido}>Sincronizar Agora</button>{!s.token_valido && s.oauth_configurado && <button>Renovar</button>}{!s.oauth_configurado && <button>Conectar</button>}</article>)}</section>
     </div>
   );

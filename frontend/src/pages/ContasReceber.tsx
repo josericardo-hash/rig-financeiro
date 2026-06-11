@@ -41,7 +41,7 @@ export default function ContasReceber() {
           </ResponsiveContainer>
           <div className="legend-list">{formasPagamento.map((item) => <span key={item.forma}>{item.forma}: {formatCurrency(item.valor_recebido)} ({formatPct(item.participacao_pct)})</span>)}</div>
         </ChartCard>
-        <ChartCard title="Evolucao de Recebimentos">
+        <ChartCard title="Evolução de Recebimentos">
           <ResponsiveContainer height={320}>
             <BarChart data={evolucaoRecebimentos}>
               <CartesianGrid strokeDasharray="3 3" />

@@ -47,7 +47,7 @@ export default function ContasPagar() {
           <ResponsiveContainer height={300}><PieChart><Pie data={gruposDespesa} dataKey="valor" nameKey="grupo" outerRadius={100}>{gruposDespesa.map((_, i) => <Cell key={i} fill={colors[i]} />)}</Pie><Tooltip formatter={(v) => formatCurrency(Number(v))} /></PieChart></ResponsiveContainer>
           <div className="legend-list">{gruposDespesa.map((item) => <span key={item.grupo}>{item.grupo}: {formatCurrency(item.valor)} ({formatPct(item.participacao_pct)})</span>)}</div>
         </ChartCard>
-        <ChartCard title="Evolucao de Pagamentos">
+        <ChartCard title="Evolução de Pagamentos">
           <ResponsiveContainer height={320}><BarChart data={evolucao}><CartesianGrid strokeDasharray="3 3" /><XAxis dataKey="mes" /><YAxis yAxisId="left" tickFormatter={(v) => `${v / 1000}k`} /><YAxis yAxisId="right" orientation="right" /><Tooltip formatter={(v) => typeof v === 'number' ? formatCurrency(v) : v} /><Legend /><Bar yAxisId="left" dataKey="previsto" fill="#94a3b8" /><Bar yAxisId="left" dataKey="realizado" fill="#ef4444" /><Line yAxisId="right" dataKey="variacao" stroke="#1d4ed8" strokeWidth={3} /></BarChart></ResponsiveContainer>
         </ChartCard>
       </div>

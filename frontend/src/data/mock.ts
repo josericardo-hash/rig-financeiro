@@ -73,20 +73,86 @@ export const forecastProjecao = [
 ];
 
 export const fatoresForecast = [
-  { fator: 'Sazonalidade historica', tendencia: 'positiva', impacto_pct: 8, descricao: 'Julho/Ago tipicamente acima da media' },
-  { fator: 'Inadimplencia elevada', tendencia: 'negativa', impacto_pct: -15, descricao: 'CAR 90+ impacta fluxo real' },
-  { fator: 'Pipeline comercial', tendencia: 'positiva', impacto_pct: 5, descricao: 'Propostas em negociacao' },
+  { fator: 'Sazonalidade histórica', tendencia: 'positiva', impacto_pct: 8, descricao: 'Julho/Ago tipicamente acima da média' },
+  { fator: 'Inadimplência elevada', tendencia: 'negativa', impacto_pct: -15, descricao: 'CAR 90+ impacta fluxo real' },
+  { fator: 'Pipeline comercial', tendencia: 'positiva', impacto_pct: 5, descricao: 'Propostas em negociação' },
   { fator: 'Base de clientes', tendencia: 'neutra', impacto_pct: 0, descricao: 'Sem churn significativo' },
 ];
 
-export const vendasPorEstado = [
-  { uf: 'SP', estado: 'Sao Paulo', receita: 318000, pedidos: 47, cidades: [{ nome: 'Sao Paulo', valor: 180000 }, { nome: 'Campinas', valor: 82000 }] },
-  { uf: 'RJ', estado: 'Rio de Janeiro', receita: 144000, pedidos: 19, cidades: [{ nome: 'Rio de Janeiro', valor: 98000 }, { nome: 'Niteroi', valor: 46000 }] },
-  { uf: 'MG', estado: 'Minas Gerais', receita: 126000, pedidos: 16, cidades: [{ nome: 'Belo Horizonte', valor: 89000 }, { nome: 'Uberlandia', valor: 37000 }] },
-  { uf: 'PR', estado: 'Parana', receita: 95000, pedidos: 12, cidades: [{ nome: 'Curitiba', valor: 65000 }] },
-  { uf: 'RS', estado: 'Rio Grande do Sul', receita: 87000, pedidos: 11, cidades: [{ nome: 'Porto Alegre', valor: 55000 }] },
-  { uf: 'BA', estado: 'Bahia', receita: 69000, pedidos: 8, cidades: [{ nome: 'Salvador', valor: 49000 }] },
+export const mockEstados = [
+  { uf: 'SP', nome_estado: 'São Paulo', estado: 'São Paulo', receita: 318000, qtde_vendas: 47, pedidos: 47, ticket_medio: 6766, margem_pct: 22.4, participacao_pct: 37.0, crescimento_mom: 8.2 },
+  { uf: 'RJ', nome_estado: 'Rio de Janeiro', estado: 'Rio de Janeiro', receita: 144000, qtde_vendas: 19, pedidos: 19, ticket_medio: 7579, margem_pct: 20.8, participacao_pct: 16.7, crescimento_mom: 4.5 },
+  { uf: 'MG', nome_estado: 'Minas Gerais', estado: 'Minas Gerais', receita: 126000, qtde_vendas: 16, pedidos: 16, ticket_medio: 7875, margem_pct: 21.1, participacao_pct: 14.6, crescimento_mom: 2.1 },
+  { uf: 'PR', nome_estado: 'Paraná', estado: 'Paraná', receita: 95000, qtde_vendas: 12, pedidos: 12, ticket_medio: 7917, margem_pct: 19.6, participacao_pct: 11.0, crescimento_mom: 6.3 },
+  { uf: 'RS', nome_estado: 'Rio Grande do Sul', estado: 'Rio Grande do Sul', receita: 87000, qtde_vendas: 11, pedidos: 11, ticket_medio: 7909, margem_pct: 18.9, participacao_pct: 10.1, crescimento_mom: -1.4 },
+  { uf: 'BA', nome_estado: 'Bahia', estado: 'Bahia', receita: 69000, qtde_vendas: 8, pedidos: 8, ticket_medio: 8625, margem_pct: 23.2, participacao_pct: 8.0, crescimento_mom: 3.8 },
 ];
+
+export const mockCidadesPorEstado: Record<string, Array<{ cidade: string; qtde_vendas: number; receita: number; ticket_medio: number; participacao_pct: number }>> = {
+  SP: [
+    { cidade: 'São Paulo', qtde_vendas: 32, receita: 224000, ticket_medio: 7000, participacao_pct: 70.4 },
+    { cidade: 'Campinas', qtde_vendas: 9, receita: 63000, ticket_medio: 7000, participacao_pct: 19.8 },
+    { cidade: 'Ribeirão Preto', qtde_vendas: 4, receita: 28000, ticket_medio: 7000, participacao_pct: 8.8 },
+    { cidade: 'Santos', qtde_vendas: 2, receita: 3000, ticket_medio: 1500, participacao_pct: 1.0 },
+  ],
+  RJ: [
+    { cidade: 'Rio de Janeiro', qtde_vendas: 14, receita: 105000, ticket_medio: 7500, participacao_pct: 72.9 },
+    { cidade: 'Niterói', qtde_vendas: 3, receita: 24000, ticket_medio: 8000, participacao_pct: 16.7 },
+    { cidade: 'Duque de Caxias', qtde_vendas: 2, receita: 15000, ticket_medio: 7500, participacao_pct: 10.4 },
+  ],
+  MG: [
+    { cidade: 'Belo Horizonte', qtde_vendas: 10, receita: 82000, ticket_medio: 8200, participacao_pct: 65.1 },
+    { cidade: 'Uberlândia', qtde_vendas: 4, receita: 28000, ticket_medio: 7000, participacao_pct: 22.2 },
+    { cidade: 'Contagem', qtde_vendas: 2, receita: 16000, ticket_medio: 8000, participacao_pct: 12.7 },
+  ],
+  PR: [
+    { cidade: 'Curitiba', qtde_vendas: 9, receita: 72000, ticket_medio: 8000, participacao_pct: 75.8 },
+    { cidade: 'Londrina', qtde_vendas: 3, receita: 23000, ticket_medio: 7667, participacao_pct: 24.2 },
+  ],
+  RS: [
+    { cidade: 'Porto Alegre', qtde_vendas: 8, receita: 61000, ticket_medio: 7625, participacao_pct: 70.1 },
+    { cidade: 'Caxias do Sul', qtde_vendas: 3, receita: 26000, ticket_medio: 8667, participacao_pct: 29.9 },
+  ],
+  BA: [
+    { cidade: 'Salvador', qtde_vendas: 6, receita: 48000, ticket_medio: 8000, participacao_pct: 69.6 },
+    { cidade: 'Feira de Santana', qtde_vendas: 2, receita: 21000, ticket_medio: 10500, participacao_pct: 30.4 },
+  ],
+};
+
+export const vendasPorEstado: Array<{ uf: string; estado: string; receita: number; pedidos: number; cidades: Array<{ nome: string; valor: number }> }> = mockEstados.map((estado) => ({
+  uf: estado.uf,
+  estado: estado.nome_estado,
+  receita: estado.receita,
+  pedidos: estado.qtde_vendas,
+  cidades: (mockCidadesPorEstado[estado.uf] || []).map((cidade) => ({ nome: cidade.cidade, valor: cidade.receita })),
+}));
+
+export const mockClientesPorCidade: Record<string, Array<{ cliente_nome: string; perfil: 'B2B' | 'B2C'; receita: number; top_produto: string; email: string; whatsapp: string }>> = {
+  'São Paulo': [
+    { cliente_nome: 'Sec. Segurança SP', perfil: 'B2B', receita: 375000, top_produto: 'Pistola Sig Sauer P320', email: 'compras@ssp.sp.gov.br', whatsapp: '5511933114000' },
+    { cliente_nome: 'Grupo Orion Industrial', perfil: 'B2B', receita: 198000, top_produto: 'Pistola Sig Sauer P226', email: 'compras@gruporion.com.br', whatsapp: '5511999990001' },
+    { cliente_nome: 'Carlos Silva', perfil: 'B2C', receita: 15000, top_produto: 'Holster Kydex P320', email: 'carlos.silva@email.com', whatsapp: '5511987654321' },
+  ],
+  Campinas: [
+    { cliente_nome: 'Ind. Segurança Campinas', perfil: 'B2B', receita: 63000, top_produto: 'Colete Tático Modular', email: 'compras@indcamp.com.br', whatsapp: '5519988881234' },
+  ],
+  'Rio de Janeiro': [
+    { cliente_nome: 'PM Rio de Janeiro', perfil: 'B2B', receita: 225000, top_produto: 'Pistola Sig Sauer P226', email: 'logistica@pmerj.rj.gov.br', whatsapp: '5521923345678' },
+    { cliente_nome: 'João Pereira', perfil: 'B2C', receita: 19000, top_produto: 'Munição .40 S&W', email: 'joao.pereira@email.com', whatsapp: '5521987651234' },
+  ],
+  'Belo Horizonte': [
+    { cliente_nome: 'CBA Soluções BH', perfil: 'B2B', receita: 82000, top_produto: 'Pistola Sig Sauer P320', email: 'compras@cbabh.com.br', whatsapp: '5531988881234' },
+  ],
+  Curitiba: [
+    { cliente_nome: 'Sig Sauer Operações PR', perfil: 'B2B', receita: 72000, top_produto: 'Pistola Sig Sauer P320', email: 'ops@sigpr.com.br', whatsapp: '5541988881234' },
+  ],
+  'Porto Alegre': [
+    { cliente_nome: 'Norte Energia RS', perfil: 'B2B', receita: 61000, top_produto: 'Colete Tático Modular', email: 'compras@nors.com.br', whatsapp: '5551988881234' },
+  ],
+  Salvador: [
+    { cliente_nome: 'Maria Andrade', perfil: 'B2C', receita: 48000, top_produto: 'Pistola Sig Sauer P226', email: 'maria.andrade@email.com', whatsapp: '5571988881234' },
+  ],
+};
 
 export const pedidos = [
   { id: 'venda-001', numero: '001248', data: '2026-06-04', cliente: 'Policia Civil SP', empresa: 'Performa', valor: 40000, margem: 21.3, status: 'Faturado' },
