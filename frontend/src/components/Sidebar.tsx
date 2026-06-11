@@ -1,4 +1,4 @@
-import {
+﻿import {
   BarChart3,
   Banknote,
   BriefcaseBusiness,
@@ -52,7 +52,7 @@ export default function Sidebar({ pages, active, onNavigate }: SidebarProps) {
     <aside className="sidebar">
       <div className="brand">
         <strong>RIG Financeiro 2.0</strong>
-        <span>Fase 12</span>
+        <span>Fase 13</span>
       </div>
       <nav>
         {Object.entries(sections).map(([section, items]) => (
@@ -73,3 +73,5 @@ export default function Sidebar({ pages, active, onNavigate }: SidebarProps) {
     </aside>
   );
 }
+
+

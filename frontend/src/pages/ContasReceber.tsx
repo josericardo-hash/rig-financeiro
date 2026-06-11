@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+﻿import { useMemo, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, Cell, Legend, Line, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import ChartCard from '../components/ChartCard';
 import MetricCard from '../components/MetricCard';
@@ -20,7 +20,7 @@ export default function ContasReceber() {
 
   return (
     <div className="page">
-      <header><h1>Contas a Receber</h1><p>KPIs executivos, formas de recebimento e risco de inadimplencia.</p></header>
+      <header><h1>Contas a Receber</h1><p>KPIs executivos, formas de recebimento e risco de Inadimplência.</p></header>
       <div className="metrics six">
         <MetricCard title="Total em Aberto" value={formatCurrency(385000)} />
         <MetricCard title="A Vencer" value={formatCurrency(206000)} tone="green" />
@@ -67,3 +67,5 @@ export default function ContasReceber() {
     </div>
   );
 }
+
+

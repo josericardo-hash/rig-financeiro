@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+﻿import { Fragment, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import ChartCard from '../components/ChartCard';
 import MetricCard from '../components/MetricCard';
@@ -33,7 +33,7 @@ const mockItensVenda: Record<string, Array<{ produto: string; tipo: string; qtde
 };
 
 const totalReceita = mockVendasRecentes.reduce((sum, venda) => sum + venda.valor, 0);
-const ticketMedio = totalReceita / mockVendasRecentes.length;
+const ticketMédio = totalReceita / mockVendasRecentes.length;
 const margemMedia = mockVendasRecentes.reduce((sum, venda) => sum + venda.margem, 0) / mockVendasRecentes.length;
 
 export default function Vendas() {
@@ -45,7 +45,7 @@ export default function Vendas() {
       <div className="metrics four">
         <MetricCard title="Receita Total" value={formatCurrency(totalReceita)} />
         <MetricCard title="Qtde Pedidos" value={String(mockVendasRecentes.length)} />
-        <MetricCard title="Ticket Médio" value={formatCurrency(ticketMedio)} />
+        <MetricCard title="Ticket Médio" value={formatCurrency(ticketMédio)} />
         <MetricCard title="Margem" value={`${margemMedia.toFixed(1)}%`} tone="green" />
       </div>
 
@@ -134,3 +134,4 @@ export default function Vendas() {
     </div>
   );
 }
+

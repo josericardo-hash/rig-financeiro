@@ -1,29 +1,36 @@
 import { RefreshCw, Search } from 'lucide-react';
 
+const today = new Date();
+const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+const toInputDate = (date: Date) => date.toISOString().slice(0, 10);
+
 export default function Topbar({ activeLabel }: { activeLabel: string }) {
   return (
     <header className="topbar">
       <div className="topbar-title">
         <span>RIG</span>
-        <strong>{activeLabel}</strong>
+        <div>
+          <strong>RIG Financeiro 2.0</strong>
+          <small>{activeLabel}</small>
+        </div>
       </div>
       <div className="topbar-controls">
         <label>
           Empresa
-          <select defaultValue="consolidado">
-            <option value="consolidado">Consolidado</option>
-            <option value="performa">Performa</option>
-            <option value="sig">SIG</option>
-            <option value="cba">CBA</option>
+          <select defaultValue="todas">
+            <option value="todas">Todas</option>
+            <option value="performa">Performa Extreme</option>
+            <option value="sig">SIG do Brasil</option>
+            <option value="cba">CBA Armas</option>
           </select>
         </label>
         <label>
-          Periodo
-          <select defaultValue="jun-2026">
-            <option value="jun-2026">Jun/2026</option>
-            <option value="mai-2026">Mai/2026</option>
-            <option value="q2-2026">2T/2026</option>
-          </select>
+          Início
+          <input type="date" defaultValue={toInputDate(startOfMonth)} />
+        </label>
+        <label>
+          Fim
+          <input type="date" defaultValue={toInputDate(today)} />
         </label>
         <button className="icon-button" title="Pesquisar">
           <Search size={18} />

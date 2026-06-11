@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+﻿import { useEffect, useMemo, useState } from 'react';
 
 interface GeoEstado {
   uf: string;
@@ -277,3 +277,5 @@ export default function MapaBrasil({
     </div>
   );
 }
+
+

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import MapaBrasil from '../components/MapaBrasil';
 import { mockCidadesPorEstado, mockClientesPorCidade, mockEstados } from '../data/mock';
 import { formatCurrency, formatPct } from '../services/api';
@@ -38,7 +38,7 @@ export default function MapaVendas() {
 
   const totalReceita = mockEstados.reduce((sum, estado) => sum + estado.receita, 0);
   const totalPedidos = mockEstados.reduce((sum, estado) => sum + estado.qtde_vendas, 0);
-  const ticketMedio = totalPedidos ? totalReceita / totalPedidos : 0;
+  const ticketMédio = totalPedidos ? totalReceita / totalPedidos : 0;
 
   return (
     <div className="page">
@@ -100,7 +100,7 @@ export default function MapaVendas() {
                   <div><span>Receita Total</span><strong>{formatCurrency(totalReceita)}</strong></div>
                   <div><span>Pedidos</span><strong>{totalPedidos}</strong></div>
                   <div><span>Estados c/ vendas</span><strong>{mockEstados.length}</strong></div>
-                  <div><span>Ticket Médio</span><strong>{formatCurrency(ticketMedio)}</strong></div>
+                  <div><span>Ticket Médio</span><strong>{formatCurrency(ticketMédio)}</strong></div>
                 </div>
               </section>
               <section className="panel compact">
@@ -159,3 +159,5 @@ export default function MapaVendas() {
     </div>
   );
 }
+
+

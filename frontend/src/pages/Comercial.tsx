@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Bar, BarChart, CartesianGrid, Cell, ComposedChart, Legend, Line, Pie, PieChart, Radar, RadarChart, PolarAngleAxis, PolarGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import ChartCard from '../components/ChartCard';
 import MetricCard from '../components/MetricCard';
@@ -20,7 +20,7 @@ export default function Comercial() {
   const [estadoAberto, setEstadoAberto] = useState('SP');
   return (
     <div className="page">
-      <header><h1>Comercial</h1><p>Dashboards por visao geral, produtos, geografia, B2B/B2C e curva ABC.</p></header>
+      <header><h1>Comercial</h1><p>Dashboards por Visão geral, produtos, geografia, B2B/B2C e curva ABC.</p></header>
       <div className="tabs">{['geral','produtos','geografia','b2b','abc'].map((id) => <button className={tab === id ? 'active' : ''} onClick={() => setTab(id)} key={id}>{id.toUpperCase()}</button>)}</div>
       {tab === 'geral' && <><div className="metrics four"><MetricCard title="Receita" value={formatCurrency(1045031)} /><MetricCard title="Pedidos" value="128" /><MetricCard title="Ticket Médio" value={formatCurrency(8164)} /><MetricCard title="Margem" value="22,8%" tone="green" /></div><div className="grid two"><ChartCard title="Evolução Mensal"><ResponsiveContainer height={300}><BarChart data={b2bB2cMensal}><CartesianGrid strokeDasharray="3 3" /><XAxis dataKey="mes" /><YAxis /><Tooltip formatter={(v) => formatCurrency(Number(v))} /><Legend /><Bar dataKey="b2b" fill="#1d4ed8" /><Bar dataKey="b2c" fill="#10b981" /></BarChart></ResponsiveContainer></ChartCard><ChartCard title="B2B vs B2C"><ResponsiveContainer height={300}><PieChart><Pie data={[{ n: 'B2B', v: 80 }, { n: 'B2C', v: 20 }]} dataKey="v" nameKey="n" outerRadius={100}><Cell fill="#1d4ed8" /><Cell fill="#10b981" /></Pie><Tooltip /></PieChart></ResponsiveContainer></ChartCard></div><div className="metrics three"><MetricCard title="Melhor Mês" value="Fev/2026" detail="R$ 235K +5,6%" /><MetricCard title="Mês Atual vs Anterior" value="+8,2%" tone="green" /><MetricCard title="Média Mensal" value="R$ 208K" tone="slate" /></div></>}
       {tab === 'produtos' && <><div className="metrics three"><MetricCard title="SKUs Unicos" value="42" /><MetricCard title="Produto #1" value="P320" /><MetricCard title="Maior Margem" value="Holster" tone="green" /></div><div className="grid two"><ChartCard title="Top Produtos"><ResponsiveContainer height={320}><BarChart data={produtos} layout="vertical"><XAxis type="number" /><YAxis dataKey="nome" type="category" width={110} /><Tooltip formatter={(v) => formatCurrency(Number(v))} /><Bar dataKey="receita" fill="#1d4ed8" /></BarChart></ResponsiveContainer></ChartCard><ChartCard title="Mix por Tipo"><ResponsiveContainer height={320}><PieChart><Pie data={[{ tipo: 'PRODUTO', v: 470000 }, { tipo: 'SERVICO', v: 139000 }]} dataKey="v" nameKey="tipo" outerRadius={100}><Cell fill="#1d4ed8" /><Cell fill="#8b5cf6" /></Pie><Tooltip formatter={(v) => formatCurrency(Number(v))} /></PieChart></ResponsiveContainer></ChartCard></div><section className="panel"><h2>Produtos</h2><table><tbody>{produtos.map((p) => <tr key={p.nome}><td>{p.nome}</td><td>{p.curva}</td><td>{formatCurrency(p.receita)}</td><td><button>Ver Clientes</button></td></tr>)}</tbody></table></section></>}
@@ -30,3 +30,4 @@ export default function Comercial() {
     </div>
   );
 }
+

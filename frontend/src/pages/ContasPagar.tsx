@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Bar, BarChart, CartesianGrid, Cell, Legend, Line, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import ChartCard from '../components/ChartCard';
 import MetricCard from '../components/MetricCard';
@@ -6,7 +6,7 @@ import { gruposDespesa } from '../data/mock';
 import { formatCurrency, formatPct } from '../services/api';
 
 const colors = ['#EF4444', '#F59E0B', '#8B5CF6', '#3B82F6', '#10B981', '#06B6D4'];
-const evolucao = [
+const Evolução = [
   { mes: 'Jan', previsto: 165000, realizado: 158000, variacao: -4.2 },
   { mes: 'Fev', previsto: 190000, realizado: 185300, variacao: -2.5 },
   { mes: 'Mar', previsto: 172000, realizado: 181000, variacao: 5.2 },
@@ -48,7 +48,7 @@ export default function ContasPagar() {
           <div className="legend-list">{gruposDespesa.map((item) => <span key={item.grupo}>{item.grupo}: {formatCurrency(item.valor)} ({formatPct(item.participacao_pct)})</span>)}</div>
         </ChartCard>
         <ChartCard title="Evolução de Pagamentos">
-          <ResponsiveContainer height={320}><BarChart data={evolucao}><CartesianGrid strokeDasharray="3 3" /><XAxis dataKey="mes" /><YAxis yAxisId="left" tickFormatter={(v) => `${v / 1000}k`} /><YAxis yAxisId="right" orientation="right" /><Tooltip formatter={(v) => typeof v === 'number' ? formatCurrency(v) : v} /><Legend /><Bar yAxisId="left" dataKey="previsto" fill="#94a3b8" /><Bar yAxisId="left" dataKey="realizado" fill="#ef4444" /><Line yAxisId="right" dataKey="variacao" stroke="#1d4ed8" strokeWidth={3} /></BarChart></ResponsiveContainer>
+          <ResponsiveContainer height={320}><BarChart data={Evolução}><CartesianGrid strokeDasharray="3 3" /><XAxis dataKey="mes" /><YAxis yAxisId="left" tickFormatter={(v) => `${v / 1000}k`} /><YAxis yAxisId="right" orientation="right" /><Tooltip formatter={(v) => typeof v === 'number' ? formatCurrency(v) : v} /><Legend /><Bar yAxisId="left" dataKey="previsto" fill="#94a3b8" /><Bar yAxisId="left" dataKey="realizado" fill="#ef4444" /><Line yAxisId="right" dataKey="variacao" stroke="#1d4ed8" strokeWidth={3} /></BarChart></ResponsiveContainer>
         </ChartCard>
       </div>
       <section className="panel"><h2>Top Fornecedores</h2>{fornecedores.map((item) => <div className="progress-row" key={item.nome}><span>{item.nome}</span><span>{item.categoria}</span><strong>{formatCurrency(item.valor)}</strong><div><i style={{ width: `${item.pct * 4}%` }} /></div><span>{formatPct(item.pct)}</span></div>)}</section>
@@ -56,3 +56,4 @@ export default function ContasPagar() {
     </div>
   );
 }
+

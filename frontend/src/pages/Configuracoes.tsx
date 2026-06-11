@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import MetricCard from '../components/MetricCard';
 import { apiGet } from '../services/api';
 
@@ -20,3 +20,5 @@ export default function Configuracoes() {
     </div>
   );
 }
+
+

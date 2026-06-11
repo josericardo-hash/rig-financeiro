@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Area, Bar, CartesianGrid, ComposedChart, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import ChartCard from '../components/ChartCard';
 import MetricCard from '../components/MetricCard';
@@ -20,3 +20,5 @@ export default function Forecast() {
     </div>
   );
 }
+
+
