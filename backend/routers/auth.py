@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from fastapi import APIRouter, Depends, Query
+from pydantic import BaseModel
+from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 
@@ -14,6 +15,11 @@ from models.financeiro import ContaPagar, ContaReceber, OAuthToken
 from models.venda import Venda
 
 router = APIRouter(prefix="/auth", tags=["auth"])
+
+
+class ManualTokenRequest(BaseModel):
+    empresa_id: int
+    code: str
 
 
 @router.get("/contaazul/url")
@@ -32,6 +38,17 @@ def contaazul_callback(
     auth = ContaAzulAuth(db=db)
     auth.exchange_code_for_token(code, empresa_id)
     return RedirectResponse(url=f"http://localhost:5173/configuracoes?contaazul=sucesso&empresa_id={empresa_id}")
+
+
+@router.post("/contaazul/manual-token")
+def contaazul_manual_token(payload: ManualTokenRequest, db: Session = Depends(get_db)) -> dict[str, str | bool]:
+    empresa = db.query(Empresa).filter(Empresa.id == payload.empresa_id).one_or_none()
+    if empresa is None:
+        raise HTTPException(status_code=404, detail="Empresa nao encontrada.")
+
+    auth = ContaAzulAuth(db=db)
+    auth.exchange_code_for_token(payload.code.strip(), payload.empresa_id)
+    return {"success": True, "empresa": empresa.nome}
 
 
 @router.get("/status")

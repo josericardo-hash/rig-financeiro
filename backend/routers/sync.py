@@ -19,6 +19,10 @@ class SyncTriggerRequest(BaseModel):
     tipo: str
 
 
+class FullSyncRequest(BaseModel):
+    empresa_id: int
+
+
 @router.post("/trigger")
 def trigger_sync(payload: SyncTriggerRequest, db: Session = Depends(get_db)) -> dict:
     empresas = _empresas_alvo(db, payload.empresa_id)
@@ -26,6 +30,17 @@ def trigger_sync(payload: SyncTriggerRequest, db: Session = Depends(get_db)) -> 
     for empresa in empresas:
         if payload.tipo == "full":
             logs.append(_serialize_sync_log(sync_clientes(empresa.id, db)))
+        logs.append(_serialize_sync_log(sync_vendas(empresa.id, db)))
+        logs.append(_serialize_sync_log(sync_financeiro(empresa.id, db)))
+    return {"logs": logs}
+
+
+@router.post("/full")
+def trigger_full_sync(payload: FullSyncRequest, db: Session = Depends(get_db)) -> dict:
+    empresas = _empresas_alvo(db, payload.empresa_id)
+    logs = []
+    for empresa in empresas:
+        logs.append(_serialize_sync_log(sync_clientes(empresa.id, db)))
         logs.append(_serialize_sync_log(sync_vendas(empresa.id, db)))
         logs.append(_serialize_sync_log(sync_financeiro(empresa.id, db)))
     return {"logs": logs}

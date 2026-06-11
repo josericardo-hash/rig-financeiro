@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
+const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || 'http://localhost:8055';
 
 export async function apiGet<T>(path: string, fallback: T): Promise<T> {
   try {
@@ -11,6 +11,19 @@ export async function apiGet<T>(path: string, fallback: T): Promise<T> {
   } catch {
     return fallback;
   }
+}
+
+export async function apiPost<T, B = unknown>(path: string, body: B): Promise<T> {
+  const response = await fetch(`${API_BASE}${path}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(detail || `Erro HTTP ${response.status}`);
+  }
+  return (await response.json()) as T;
 }
 
 export const formatCurrency = (value: number) =>
